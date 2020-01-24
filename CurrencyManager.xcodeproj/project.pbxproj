@@ -9,13 +9,17 @@
 /* Begin PBXBuildFile section */
 		2534F77123D7639D003B0643 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2534F77023D7639D003B0643 /* AppDelegate.swift */; };
 		2534F77323D7639D003B0643 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2534F77223D7639D003B0643 /* SceneDelegate.swift */; };
-		2534F77523D7639D003B0643 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2534F77423D7639D003B0643 /* ViewController.swift */; };
 		2534F77823D7639D003B0643 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2534F77623D7639D003B0643 /* Main.storyboard */; };
 		2534F77B23D7639D003B0643 /* CurrencyManager.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2534F77923D7639D003B0643 /* CurrencyManager.xcdatamodeld */; };
 		2534F77D23D763A0003B0643 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2534F77C23D763A0003B0643 /* Assets.xcassets */; };
 		2534F78023D763A0003B0643 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2534F77E23D763A0003B0643 /* LaunchScreen.storyboard */; };
 		2534F78B23D763A1003B0643 /* CurrencyManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2534F78A23D763A1003B0643 /* CurrencyManagerTests.swift */; };
 		2534F79623D763A1003B0643 /* CurrencyManagerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2534F79523D763A1003B0643 /* CurrencyManagerUITests.swift */; };
+		2534F7A423D7683E003B0643 /* CostsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2534F7A323D7683E003B0643 /* CostsTableViewController.swift */; };
+		2534F7A623D768AB003B0643 /* CostsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2534F7A523D768AB003B0643 /* CostsTableViewCell.swift */; };
+		2534F7A823D785BA003B0643 /* StatisticTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2534F7A723D785BA003B0643 /* StatisticTableViewController.swift */; };
+		2534F7AA23D8971E003B0643 /* NewCostTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2534F7A923D8971E003B0643 /* NewCostTableViewController.swift */; };
+		2534F7AC23D89840003B0643 /* CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2534F7AB23D89840003B0643 /* CoreData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,7 +43,6 @@
 		2534F76D23D7639D003B0643 /* CurrencyManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CurrencyManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2534F77023D7639D003B0643 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2534F77223D7639D003B0643 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		2534F77423D7639D003B0643 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		2534F77723D7639D003B0643 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2534F77A23D7639D003B0643 /* CurrencyManager.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CurrencyManager.xcdatamodel; sourceTree = "<group>"; };
 		2534F77C23D763A0003B0643 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -51,6 +54,11 @@
 		2534F79123D763A1003B0643 /* CurrencyManagerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CurrencyManagerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2534F79523D763A1003B0643 /* CurrencyManagerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyManagerUITests.swift; sourceTree = "<group>"; };
 		2534F79723D763A1003B0643 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2534F7A323D7683E003B0643 /* CostsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CostsTableViewController.swift; sourceTree = "<group>"; };
+		2534F7A523D768AB003B0643 /* CostsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CostsTableViewCell.swift; sourceTree = "<group>"; };
+		2534F7A723D785BA003B0643 /* StatisticTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticTableViewController.swift; sourceTree = "<group>"; };
+		2534F7A923D8971E003B0643 /* NewCostTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCostTableViewController.swift; sourceTree = "<group>"; };
+		2534F7AB23D89840003B0643 /* CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,7 +111,11 @@
 			children = (
 				2534F77023D7639D003B0643 /* AppDelegate.swift */,
 				2534F77223D7639D003B0643 /* SceneDelegate.swift */,
-				2534F77423D7639D003B0643 /* ViewController.swift */,
+				2534F7A323D7683E003B0643 /* CostsTableViewController.swift */,
+				2534F7A923D8971E003B0643 /* NewCostTableViewController.swift */,
+				2534F7A523D768AB003B0643 /* CostsTableViewCell.swift */,
+				2534F7A723D785BA003B0643 /* StatisticTableViewController.swift */,
+				2534F7AB23D89840003B0643 /* CoreData.swift */,
 				2534F77623D7639D003B0643 /* Main.storyboard */,
 				2534F77C23D763A0003B0643 /* Assets.xcassets */,
 				2534F77E23D763A0003B0643 /* LaunchScreen.storyboard */,
@@ -262,9 +274,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2534F77523D7639D003B0643 /* ViewController.swift in Sources */,
+				2534F7A823D785BA003B0643 /* StatisticTableViewController.swift in Sources */,
+				2534F7A423D7683E003B0643 /* CostsTableViewController.swift in Sources */,
 				2534F77123D7639D003B0643 /* AppDelegate.swift in Sources */,
+				2534F7AA23D8971E003B0643 /* NewCostTableViewController.swift in Sources */,
+				2534F7AC23D89840003B0643 /* CoreData.swift in Sources */,
 				2534F77B23D7639D003B0643 /* CurrencyManager.xcdatamodeld in Sources */,
+				2534F7A623D768AB003B0643 /* CostsTableViewCell.swift in Sources */,
 				2534F77323D7639D003B0643 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -370,7 +386,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -424,7 +440,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -441,6 +457,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9SR6C9RNX9;
 				INFOPLIST_FILE = CurrencyManager/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -448,7 +465,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.iHope.CurrencyManager;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -459,6 +476,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9SR6C9RNX9;
 				INFOPLIST_FILE = CurrencyManager/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -466,7 +484,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.iHope.CurrencyManager;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
