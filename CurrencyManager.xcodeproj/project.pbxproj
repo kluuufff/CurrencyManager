@@ -109,18 +109,10 @@
 		2534F76F23D7639D003B0643 /* CurrencyManager */ = {
 			isa = PBXGroup;
 			children = (
-				2534F77023D7639D003B0643 /* AppDelegate.swift */,
-				2534F77223D7639D003B0643 /* SceneDelegate.swift */,
-				2534F7A323D7683E003B0643 /* CostsTableViewController.swift */,
-				2534F7A923D8971E003B0643 /* NewCostTableViewController.swift */,
-				2534F7A523D768AB003B0643 /* CostsTableViewCell.swift */,
-				2534F7A723D785BA003B0643 /* StatisticTableViewController.swift */,
-				2534F7AB23D89840003B0643 /* CoreData.swift */,
-				2534F77623D7639D003B0643 /* Main.storyboard */,
-				2534F77C23D763A0003B0643 /* Assets.xcassets */,
-				2534F77E23D763A0003B0643 /* LaunchScreen.storyboard */,
+				2534F7D023DB0A7D003B0643 /* View */,
+				2534F7D123DB0A8A003B0643 /* Data */,
+				2534F7CF23DB0A65003B0643 /* Supported Files */,
 				2534F78123D763A0003B0643 /* Info.plist */,
-				2534F77923D7639D003B0643 /* CurrencyManager.xcdatamodeld */,
 			);
 			path = CurrencyManager;
 			sourceTree = "<group>";
@@ -141,6 +133,38 @@
 				2534F79723D763A1003B0643 /* Info.plist */,
 			);
 			path = CurrencyManagerUITests;
+			sourceTree = "<group>";
+		};
+		2534F7CF23DB0A65003B0643 /* Supported Files */ = {
+			isa = PBXGroup;
+			children = (
+				2534F77023D7639D003B0643 /* AppDelegate.swift */,
+				2534F77223D7639D003B0643 /* SceneDelegate.swift */,
+				2534F77623D7639D003B0643 /* Main.storyboard */,
+				2534F77C23D763A0003B0643 /* Assets.xcassets */,
+				2534F77E23D763A0003B0643 /* LaunchScreen.storyboard */,
+				2534F77923D7639D003B0643 /* CurrencyManager.xcdatamodeld */,
+			);
+			path = "Supported Files";
+			sourceTree = "<group>";
+		};
+		2534F7D023DB0A7D003B0643 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				2534F7A323D7683E003B0643 /* CostsTableViewController.swift */,
+				2534F7A923D8971E003B0643 /* NewCostTableViewController.swift */,
+				2534F7A523D768AB003B0643 /* CostsTableViewCell.swift */,
+				2534F7A723D785BA003B0643 /* StatisticTableViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		2534F7D123DB0A8A003B0643 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				2534F7AB23D89840003B0643 /* CoreData.swift */,
+			);
+			path = Data;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

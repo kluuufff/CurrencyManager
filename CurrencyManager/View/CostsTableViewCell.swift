@@ -9,13 +9,15 @@
 import UIKit
 
 class CostsTableViewCell: UITableViewCell {
-
+    
+    //MARK: - IBOutlets
+    
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var amountLabel: UILabel!
     @IBOutlet weak var costsTypeLabel: UILabel!
     @IBOutlet weak var backView: UIView! {
         didSet {
-            // Make it card-like
+            //Added style for cells
             backView.layer.cornerRadius = 10
             backView.layer.shadowOpacity = 0.25
             backView.layer.shadowRadius = 8
@@ -24,15 +26,4 @@ class CostsTableViewCell: UITableViewCell {
             backView.backgroundColor = .white
         }
     }
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
-    
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-
 }

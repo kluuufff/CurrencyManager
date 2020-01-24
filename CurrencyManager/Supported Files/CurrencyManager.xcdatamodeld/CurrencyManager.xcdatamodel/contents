@@ -6,7 +6,12 @@
         <attribute name="type" optional="YES" attributeType="String"/>
         <attribute name="value" optional="YES" attributeType="String"/>
     </entity>
+    <entity name="Settings" representedClassName="Settings" syncable="YES" codeGenerationType="class">
+        <attribute name="curr_type" optional="YES" attributeType="String"/>
+        <attribute name="currency" optional="YES" attributeType="String"/>
+    </entity>
     <elements>
         <element name="Costs" positionX="-63" positionY="-18" width="128" height="103"/>
+        <element name="Settings" positionX="-54" positionY="18" width="128" height="73"/>
     </elements>
 </model>

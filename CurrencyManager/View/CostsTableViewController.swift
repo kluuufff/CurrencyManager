@@ -10,12 +10,16 @@ import UIKit
 import CoreData
 
 class CostsTableViewController: UITableViewController {
-
+    
+//MARK: - viewDidLoad
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         let coreData = CoreData()
         coreData.fetch()
     }
+    
+//MARK: - Done button in NewCostTableViewController
     
     @IBAction func unwindToCostsTableViewController(segue: UIStoryboardSegue) {
         DispatchQueue.global(qos: .userInitiated).async {
@@ -24,53 +28,38 @@ class CostsTableViewController: UITableViewController {
             }
         }
     }
+}
 
+//MARK: - TableView extension
+
+extension CostsTableViewController {
+    
+    //return count cows in section
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return costs.count
     }
     
+    //return cells
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "costsCell", for: indexPath) as! CostsTableViewCell
-        
         cell.dateLabel.text = costs[indexPath.row].value(forKey: "date") as? String
         cell.amountLabel.text = costs[indexPath.row].value(forKey: "name") as? String
         cell.costsTypeLabel.text = "-$" + String((costs[indexPath.row].value(forKey: "value") as? String)!)
-        
+        cell.accessoryView?.frame = CGRect(x: 5, y: 5, width: 5, height: 5)
         return cell
     }
     
+    //return row height
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 120
     }
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+    
+        // Override to support editing the table view.
+    //    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+    //        if editingStyle == .delete {
+    //            let coreData = CoreData()
+    //            coreData.delete(object: indexPath.row)
+    //            tableView.deleteRows(at: [indexPath], with: .fade)
+    //        }
+    //    }
 }

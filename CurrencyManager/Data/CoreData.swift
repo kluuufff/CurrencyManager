@@ -9,9 +9,17 @@
 import UIKit
 import CoreData
 
+//MARK: - Global NSManagedObjects Arrays
+
 var costs = [NSManagedObject]()
+var settings = [NSManagedObject]()
+
+//MARK: - Class CoreData
 
 class CoreData {
+    
+    //MARK: - Func Save to CoreData
+    
     func save(date: String, name: String, value: String) {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         let context = appDelegate.persistentContainer.viewContext
@@ -28,6 +36,8 @@ class CoreData {
         }
     }
     
+    //MARK: - Func Fetch from CoreData
+    
     func fetch() {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         let context = appDelegate.persistentContainer.viewContext
@@ -39,15 +49,17 @@ class CoreData {
         }
     }
     
-//    func delete(object: Int) {
-//        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-//        let context = appDelegate.persistentContainer.viewContext
-//        context.delete(costs[object])
-//        costs.remove(at: object)
-//        do {
-//            try context.save()
-//        } catch {
-//            print("error when delete")
-//        }
-//    }
+    //MARK: - Func Delete from CoreData
+    
+    func delete(object: Int) {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        let context = appDelegate.persistentContainer.viewContext
+        context.delete(costs[object])
+        costs.remove(at: object)
+        do {
+            try context.save()
+        } catch {
+            print("error when delete")
+        }
+    }
 }
