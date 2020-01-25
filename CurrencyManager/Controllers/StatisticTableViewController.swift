@@ -21,6 +21,7 @@ class StatisticTableViewController: UITableViewController {
             limitView.layer.shadowOffset = CGSize.zero
         }
     }
+    @IBOutlet weak var limitLabel: UILabel!
     @IBOutlet weak var balanceView: UIView! {
         didSet {
             balanceView.layer.cornerRadius = 10
@@ -30,11 +31,19 @@ class StatisticTableViewController: UITableViewController {
             balanceView.layer.shadowOffset = CGSize.zero
         }
     }
+    @IBOutlet weak var balanceLabel: UILabel!
     
     //MARK: - viewDidLoad
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        limitLabel.text = "$" + (UserDefaults.standard.string(forKey: "amountSettings") ?? "0")
+        balanceLabel.text = "$" + (UserDefaults.standard.string(forKey: "balanceSettings") ?? UserDefaults.standard.string(forKey: "amountSettings") ?? "0")
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        limitLabel.text = "$" + (UserDefaults.standard.string(forKey: "amountSettings") ?? "0")
+        balanceLabel.text = "$" + (UserDefaults.standard.string(forKey: "balanceSettings") ?? UserDefaults.standard.string(forKey: "amountSettings") ?? "0")
     }
     
     // MARK: - Table view data source

@@ -15,13 +15,13 @@ class SettingsCRUD {
     
     //MARK: - Func Save to CoreData
     
-    func save(date: String, name: String, value: String) {
+    func save(currency: String, curr_type: String) {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         let context = appDelegate.persistentContainer.viewContext
         guard let entity = NSEntityDescription.entity(forEntityName: "Settings", in: context) else { return }
         let linkObject = NSManagedObject(entity: entity, insertInto: context)
-        linkObject.setValue(date, forKey: "currency")
-        linkObject.setValue(name, forKey: "curr_type")
+        linkObject.setValue(currency, forKey: "currency")
+        linkObject.setValue(curr_type, forKey: "curr_type")
         do {
             try context.save()
             settings.append(linkObject)
@@ -48,7 +48,7 @@ class SettingsCRUD {
     func delete(object: Int) {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         let context = appDelegate.persistentContainer.viewContext
-        context.delete(costs[object])
+        context.delete(settings[object])
         settings.remove(at: object)
         do {
             try context.save()

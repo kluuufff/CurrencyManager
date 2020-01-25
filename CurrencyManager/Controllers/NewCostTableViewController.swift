@@ -15,11 +15,17 @@ class NewCostTableViewController: UITableViewController {
     
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var countTextField: UITextField!
-
+    
     //MARK: - viewDidLoad
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        nameTextField.becomeFirstResponder()
     }
     
     //MARK: - doneBarButtonAction
@@ -28,9 +34,11 @@ class NewCostTableViewController: UITableViewController {
         let coreData = CoreData()
         let date = Date()
         let formatter = DateFormatter()
+        formatter.dateFormat = "EEEE, HH:mm"
         let dateResult = formatter.string(from: date)
         var value = ""
         var finalName = ""
+        var sum = UserDefaults.standard.integer(forKey: "amountSettings")
         
         if let name = nameTextField.text {
             finalName = name
@@ -39,12 +47,21 @@ class NewCostTableViewController: UITableViewController {
         }
         if let count = countTextField.text {
             value = count
+            let amount = Int(count)
+            sum = sum - (amount ?? 0)
+            UserDefaults.standard.set(sum, forKey: "balanceSettings")
         } else {
             print("countTextField is empty")
         }
-        formatter.dateFormat = "EEEE, HH:mm"
-        coreData.save(date: dateResult, name: finalName, value: value)
-        coreData.fetch()
-        performSegue(withIdentifier: "unwindToCostsTableViewController", sender: self)
+        if finalName != "" || value != "" {
+            #if DEBUG
+            print("date = \(dateResult)")
+            #endif
+            coreData.save(date: dateResult, name: finalName, value: value)
+            coreData.fetch()
+            performSegue(withIdentifier: "unwindToCostsTableViewController", sender: self)
+        } else {
+            performSegue(withIdentifier: "unwindToCostsTableViewController", sender: self)
+        }
     }
 }
