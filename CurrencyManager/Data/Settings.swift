@@ -1,37 +1,32 @@
 //
-//  CoreData.swift
+//  Settings.swift
 //  CurrencyManager
 //
-//  Created by Надежда Возна on 22.01.2020.
+//  Created by Надежда Возна on 25.01.2020.
 //  Copyright © 2020 Надежда Возна. All rights reserved.
 //
 
 import UIKit
 import CoreData
 
-//MARK: - Global NSManagedObjects Arrays
+var settings = [NSManagedObject]()
 
-var costs = [NSManagedObject]()
-
-//MARK: - Class CoreData
-
-class CoreData {
+class SettingsCRUD {
     
     //MARK: - Func Save to CoreData
     
     func save(date: String, name: String, value: String) {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         let context = appDelegate.persistentContainer.viewContext
-        guard let entity = NSEntityDescription.entity(forEntityName: "Costs", in: context) else { return }
+        guard let entity = NSEntityDescription.entity(forEntityName: "Settings", in: context) else { return }
         let linkObject = NSManagedObject(entity: entity, insertInto: context)
-        linkObject.setValue(date, forKey: "date")
-        linkObject.setValue(name, forKey: "name")
-        linkObject.setValue(value, forKey: "value")
+        linkObject.setValue(date, forKey: "currency")
+        linkObject.setValue(name, forKey: "curr_type")
         do {
             try context.save()
-            costs.append(linkObject)
+            settings.append(linkObject)
         } catch {
-            print("Error")
+            print("Error with save data")
         }
     }
     
@@ -40,11 +35,11 @@ class CoreData {
     func fetch() {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         let context = appDelegate.persistentContainer.viewContext
-        let fetch = NSFetchRequest<NSManagedObject>(entityName: "Costs")
+        let fetch = NSFetchRequest<NSManagedObject>(entityName: "Settings")
         do {
-            costs = try context.fetch(fetch)
+            settings = try context.fetch(fetch)
         } catch {
-            print("Error")
+            print("Error with fetch data")
         }
     }
     
@@ -54,11 +49,12 @@ class CoreData {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         let context = appDelegate.persistentContainer.viewContext
         context.delete(costs[object])
-        costs.remove(at: object)
+        settings.remove(at: object)
         do {
             try context.save()
         } catch {
-            print("error when delete")
+            print("Error with delete data")
         }
     }
 }
+
