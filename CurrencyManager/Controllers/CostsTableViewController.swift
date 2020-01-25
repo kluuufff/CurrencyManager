@@ -44,7 +44,7 @@ extension CostsTableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "costsCell", for: indexPath) as! CostsTableViewCell
         cell.dateLabel.text = costs[indexPath.row].value(forKey: "date") as? String
         cell.amountLabel.text = costs[indexPath.row].value(forKey: "name") as? String
-        cell.costsTypeLabel.text = "-$" + String((costs[indexPath.row].value(forKey: "value") as? String)!)
+        cell.costsTypeLabel.text = "-" + (UserDefaults.standard.string(forKey: "currencySymbolSettings") ?? "$") + String((costs[indexPath.row].value(forKey: "value") as? String)!)
         cell.accessoryView?.frame = CGRect(x: 5, y: 5, width: 5, height: 5)
         return cell
     }

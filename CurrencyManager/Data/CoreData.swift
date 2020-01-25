@@ -12,6 +12,8 @@ import CoreData
 //MARK: - Global NSManagedObjects Arrays
 
 var costs = [NSManagedObject]()
+var myIndexPath: IndexPath!
+var flag = false
 
 //MARK: - Class CoreData
 
