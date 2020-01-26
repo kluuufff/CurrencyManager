@@ -45,7 +45,6 @@ class NewCostTableViewController: UITableViewController {
         let dateResult = formatter.string(from: date)
         var value = ""
         var finalName = ""
-        var sum = settings.integer(forKey: "amount")
         
         if let name = nameTextField.text {
             finalName = name
@@ -54,10 +53,11 @@ class NewCostTableViewController: UITableViewController {
         }
         if let count = countTextField.text {
             value = count
-            let amount = Int(count)
-            sum = sum - (amount ?? 0)
+            let oldBalance = settings.integer(forKey: "amount")
             settings.set(Int(count)! + settings.integer(forKey: "sum"), forKey: "sum")
-            settings.set(sum, forKey: "balance")
+            let fullSum = settings.integer(forKey: "sum")
+            settings.set(oldBalance - fullSum, forKey: "balance")
+            print("balance = \(settings.integer(forKey: "balance"))")
         } else {
             print("countTextField is empty")
         }

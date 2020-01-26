@@ -11,6 +11,8 @@ import CoreData
 
 class CostsTableViewController: UITableViewController {
     
+    private let settings = UserDefaults.standard
+    
 //MARK: - viewDidLoad
     
     override func viewDidLoad() {
@@ -44,7 +46,7 @@ extension CostsTableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "costsCell", for: indexPath) as! CostsTableViewCell
         cell.dateLabel.text = costs[indexPath.row].value(forKey: "date") as? String
         cell.amountLabel.text = costs[indexPath.row].value(forKey: "name") as? String
-        cell.costsTypeLabel.text = "-" + (UserDefaults.standard.string(forKey: "currencySymbolSettings") ?? "$") + String((costs[indexPath.row].value(forKey: "value") as? String)!)
+        cell.costsTypeLabel.text = "-" + (settings.string(forKey: "currSymbol") ?? "$") + String((costs[indexPath.row].value(forKey: "value") as? String)!)
         cell.accessoryView?.frame = CGRect(x: 5, y: 5, width: 5, height: 5)
         return cell
     }
@@ -54,12 +56,17 @@ extension CostsTableViewController {
         return 120
     }
     
-        // Override to support editing the table view.
-    //    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-    //        if editingStyle == .delete {
-    //            let coreData = CoreData()
-    //            coreData.delete(object: indexPath.row)
-    //            tableView.deleteRows(at: [indexPath], with: .fade)
-    //        }
-    //    }
+    // Override to support editing the table view.
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let coreData = CoreData()
+            let oldBalance = settings.integer(forKey: "balance")
+            let sum = settings.integer(forKey: "sum")
+            let returnAmount = costs[indexPath.row].value(forKey: "value") as? String
+            coreData.delete(object: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            settings.set(oldBalance + Int(returnAmount!)!, forKey: "balance")
+            settings.set(sum - Int(returnAmount!)!, forKey: "sum")
+        }
+    }
 }
