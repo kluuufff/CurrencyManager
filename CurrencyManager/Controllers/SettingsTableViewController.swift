@@ -13,4 +13,7 @@ class SettingsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
+    @IBAction func saveBarButtonAction(_ sender: UIBarButtonItem) {
+        dismiss(animated: true, completion: nil)
+    }
 }

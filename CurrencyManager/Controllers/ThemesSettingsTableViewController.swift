@@ -1,52 +1,48 @@
 //
-//  CurrencyTypeTableViewController.swift
+//  ThemesSettingsTableViewController.swift
 //  CurrencyManager
 //
-//  Created by Надежда Возна on 25.01.2020.
+//  Created by Надежда Возна on 26.01.2020.
 //  Copyright © 2020 Надежда Возна. All rights reserved.
 //
 
 import UIKit
 
-class CurrencyTypeTableViewController: UITableViewController {
+class ThemesSettingsTableViewController: UITableViewController {
     
-    private var currencyArray = [(symbol: String, name: String)]()
-    private var currentCurrency = ""
-    private let index = UserDefaults.standard
-    
+    private let themesArray = ["System", "Dark", "Light"]
+    private let themeSelect = UserDefaults.standard
+    private var currentTheme = ""
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        currencyArray = [("$", "USD"), ("€", "EURO"), ("₽", "RUB")]
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "themeCell")
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        print("currentCurrency: \(currentCurrency)")
-        currentCurrency = currencyArray[index.integer(forKey: "index")].symbol
+        currentTheme = themesArray[themeSelect.integer(forKey: "themeSelect")]
         if self.isMovingToParent {
-            index.set(currentCurrency, forKey: "currSymbol")
-            print("currentCurrency: \(currentCurrency)")
+            themeSelect.set(currentTheme, forKey: "currentTheme")
         }
     }
-}
 
-extension CurrencyTypeTableViewController {
-    
+    // MARK: - Table view data source
+
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-    
+
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return currencyArray.count
+        return themesArray.count
     }
-    
+
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "currCell", for: indexPath) as! CurrencyTypeTableViewCell
-        cell.currSymbolLabel.text = currencyArray[indexPath.row].symbol
-        cell.currNameLabel.text = currencyArray[indexPath.row].name
-        let i = IndexPath(row: index.integer(forKey: "index"), section: 0)
-        if flag {
-            if indexPath == myIndexPath {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "themeCell", for: indexPath)
+        cell.textLabel?.text = themesArray[indexPath.row]
+        let i = IndexPath(row: themeSelect.integer(forKey: "currentTheme"), section: 0)
+        if flag2 {
+            if indexPath == myIndexPath2 {
                 cell.accessoryType = .checkmark
             }
         } else {
@@ -63,9 +59,9 @@ extension CurrencyTypeTableViewController {
             if cellPath == indexPath {
                 if let cell = tableView.cellForRow(at: indexPath) {
                     if cell.accessoryType == .checkmark {
-                        index.set(indexPath.row, forKey: "index")
-                        flag = true
-                        myIndexPath = indexPath
+                        themeSelect.set(indexPath.row, forKey: "currentTheme")
+                        flag2 = true
+                        myIndexPath2 = indexPath
                     }
                 }
                 continue

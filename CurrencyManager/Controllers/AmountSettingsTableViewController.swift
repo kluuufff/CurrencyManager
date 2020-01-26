@@ -11,16 +11,23 @@ import UIKit
 class AmountSettingsTableViewController: UITableViewController {
 
     @IBOutlet weak var amountTextField: UITextField!
+    private let settings = UserDefaults.standard
     private var amount: Int!
+    private var amountOld = 0
+    private var balanceOld = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        amount = UserDefaults.standard.integer(forKey: "amountSettings")
+        amount = settings.integer(forKey: "amount")
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         amountTextField.becomeFirstResponder()
+        amountOld = settings.integer(forKey: "amount")
+        balanceOld = settings.integer(forKey: "balance")
+        print("amountOld \(amountOld)")
+        print("balanceOld \(balanceOld)")
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -28,13 +35,19 @@ class AmountSettingsTableViewController: UITableViewController {
         if self.isMovingToParent {
             if amountTextField.text == "" && amount == 0 {
                 amountTextField.text = "0"
-                UserDefaults.standard.set(amountTextField.text, forKey: "amountSettings")
+                settings.set(amountTextField.text, forKey: "amount")
             }
             if amountTextField.text == "" && amount != 0 {
                 amountTextField.text = String(amount)
-                UserDefaults.standard.set(amountTextField.text, forKey: "amountSettings")
+                settings.set(amountTextField.text, forKey: "amount")
             } else {
-                UserDefaults.standard.set(amountTextField.text, forKey: "amountSettings")
+                settings.set(amountTextField.text, forKey: "amount")
+            }
+            if let textFieldAmount = amountTextField.text {
+                guard let intAmount = Int(textFieldAmount) else { return }
+                if amountOld != 0 {
+                    settings.set(intAmount - settings.integer(forKey: "sum"), forKey: "balance")
+                }
             }
         }
     }

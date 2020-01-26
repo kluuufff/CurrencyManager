@@ -15,12 +15,19 @@ class NewCostTableViewController: UITableViewController {
     
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var countTextField: UITextField!
+    @IBOutlet weak var typeTextField: UITextField!
+    
+    private let typePicker = UIPickerView()
+    private let settings = UserDefaults.standard
+    private var amountTypeArray: [(icon: String, name: String)] = [("🚖", "Taxi"), ("🛍", "Shopping"), ("🍟", "Food"), ("👶", "Child"), ("👕", "Clothes"), ("👟", "Footwear"), ("💄", "Cosmetics"), ("🏠", "House"), ("🚗", "Car"), ("📱", "Smart device"), ("✅", "Other")]
     
     //MARK: - viewDidLoad
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        typePicker.dataSource = self
+        typePicker.delegate = self
+        typeTextField.inputView = typePicker
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -38,7 +45,7 @@ class NewCostTableViewController: UITableViewController {
         let dateResult = formatter.string(from: date)
         var value = ""
         var finalName = ""
-        var sum = UserDefaults.standard.integer(forKey: "amountSettings")
+        var sum = settings.integer(forKey: "amount")
         
         if let name = nameTextField.text {
             finalName = name
@@ -49,10 +56,12 @@ class NewCostTableViewController: UITableViewController {
             value = count
             let amount = Int(count)
             sum = sum - (amount ?? 0)
-            UserDefaults.standard.set(sum, forKey: "balanceSettings")
+            settings.set(Int(count)! + settings.integer(forKey: "sum"), forKey: "sum")
+            settings.set(sum, forKey: "balance")
         } else {
             print("countTextField is empty")
         }
+        settings.set(typeTextField.text, forKey: "amountType")
         if finalName != "" || value != "" {
             #if DEBUG
             print("date = \(dateResult)")
@@ -63,5 +72,23 @@ class NewCostTableViewController: UITableViewController {
         } else {
             performSegue(withIdentifier: "unwindToCostsTableViewController", sender: self)
         }
+    }
+}
+
+//MARK: - extension for Picker
+
+extension NewCostTableViewController: UIPickerViewDataSource, UIPickerViewDelegate {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        typeTextField.text = amountTypeArray.first?.name
+        return amountTypeArray.count
+    }
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return amountTypeArray[row].icon + " " + amountTypeArray[row].name
+    }
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        typeTextField.text = amountTypeArray[row].name
     }
 }

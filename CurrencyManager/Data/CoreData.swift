@@ -14,6 +14,8 @@ import CoreData
 var costs = [NSManagedObject]()
 var myIndexPath: IndexPath!
 var flag = false
+var myIndexPath2: IndexPath!
+var flag2 = false
 
 //MARK: - Class CoreData
 

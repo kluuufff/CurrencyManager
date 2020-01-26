@@ -10,6 +10,8 @@ import UIKit
 
 class StatisticTableViewController: UITableViewController {
     
+    private let settings = UserDefaults.standard
+    
     //MARK: - IBOutlets
     
     @IBOutlet weak var limitView: UIView! {
@@ -37,13 +39,13 @@ class StatisticTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        limitLabel.text = (UserDefaults.standard.string(forKey: "currencySymbolSettings") ?? "$") + (UserDefaults.standard.string(forKey: "amountSettings") ?? "0")
-        balanceLabel.text = (UserDefaults.standard.string(forKey: "currencySymbolSettings") ?? "$") + (UserDefaults.standard.string(forKey: "balanceSettings") ?? UserDefaults.standard.string(forKey: "amountSettings") ?? "0")
+        limitLabel.text = (settings.string(forKey: "currSymbol") ?? "$") + (settings.string(forKey: "amount") ?? "0")
+        balanceLabel.text = (settings.string(forKey: "currSymbol") ?? "$") + (settings.string(forKey: "balance") ?? settings.string(forKey: "amount") ?? "0")
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        limitLabel.text = (UserDefaults.standard.string(forKey: "currencySymbolSettings") ?? "$") + (UserDefaults.standard.string(forKey: "amountSettings") ?? "0")
-        balanceLabel.text = (UserDefaults.standard.string(forKey: "currencySymbolSettings") ?? "$") + (UserDefaults.standard.string(forKey: "balanceSettings") ?? UserDefaults.standard.string(forKey: "amountSettings") ?? "0")
+        limitLabel.text = (settings.string(forKey: "currSymbol") ?? "$") + (settings.string(forKey: "amount") ?? "0")
+        balanceLabel.text = (settings.string(forKey: "currSymbol") ?? "$") + (settings.string(forKey: "balance") ?? settings.string(forKey: "amount") ?? "0")
     }
     
     // MARK: - Table view data source
