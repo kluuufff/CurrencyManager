@@ -10,34 +10,26 @@ import UIKit
 
 class CurrencyTypeTableViewController: UITableViewController {
     
-    private var currencyArray: [(symbol: String, name: String)] = [
-        ("$", "USD"), ("€", "EURO"), ("₽", "RUB"), ("Lek", "ALL"), ("؋", "AFN"),
-        ("$", "ARS"), ("ƒ", "AWG"), ("$", "AUD"), ("₼", "AZN"), ("$", "BSD"),
-        ("$", "BBD"), ("Br", "BYN"), ("BZ$", "BZD"), ("$", "BMD"), ("$b", "BOB"),
-        ("KM", "BAM"), ("", "BWP"), ("лв", "BGN"), ("R$", "BRL"), ("$", "BND"),
-        ("៛", "KHR"), ("$", "CAD"), ("$", "KYD"), ("$", "CLP"), ("¥", "CNY"),
-        ("$", "COP"), ("₡", "CRC"), ("kn", "HRK"), ("₱", "CUP"), ("Kč", "CZK"),
-        ("kr", "DKK"), ("RD$", "DOP"), ("$", "XCD"), ("£", "EGP"), ("$", "SVC"),
-        ("£", "FKP"), ("$", "FJD"), ("¢", "GHS"), ("£", "GIP"), ("Q", "GTQ"), ("£", "GGP"),
-        ("$", "GYD"), ("L", "HNL"), ("$", "HKD"), ("Ft", "HUF"), ("kr", "ISK"), ("₹", "INR"),
-        ("Rp", "IDR"), ("﷼", "IRR"), ("£", "IMP"), ("₪", "ILS"), ("J$", "JMD"), ("¥", "JPY"),
-        ("£", "JEP"), ("лв", "KZT"), ("₩", "KPW"), ("₩", "KRW"), ("лв", "KGS"), ("₭", "LAK"),
-        ("£", "LBP"), ("$", "LRD"), ("ден", "MKD"), ("RM", "MYR"), ("₨", "MUR"), ("$", "MXN"),
-        ("₮", "MNT"), ("MT", "MZN"), ("$", "NAD"), ("₨", "NPR"), ("ƒ", "ANG"), ("$", "NZD"),
-        ("C$", "NIO"), ("₦", "NGN"), ("kr", "NOK"), ("﷼", "OMR"), ("₨", "PKR"), ("B/.", "PAB"),
-        ("Gs", "PYG"), ("S/.", "PEN"), ("₱", "PHP"), ("zł", "PLN"), ("﷼", "QAR"), ("lei", "RON"),
-        ("£", "SHP"), ("﷼", "SAR"), ("Дин.", "RSD"), ("₨", "SCR"), ("$", "SGD"), ("$", "SBD"),
-        ("S", "SOS"), ("R", "ZAR"), ("₨", "LKR"), ("kr", "SEK"), ("CHF", "CHF"), ("$", "SRD"),
-        ("£", "SYP"), ("NT$", "TWD"), ("฿", "THB"), ("TT$", "TTD"), ("₺", "TRY"), ("$", "TVD"),
-        ("₴", "UAH"), ("£", "GBP"), ("$U", "UYU"), ("лв", "UZS"), ("Bs", "VEF"),
-        ("₫", "VND"), ("﷼", "YER"), ("Z$", "ZWD")]
     private var currencyDictionary = [String: [String]]()
+    private var symbolDictionary = [String: [String]]()
     private var currencySectionTitles = [String]()
     private var currentCurrency = ""
-    private let index = UserDefaults.standard
+    private let settings = UserDefaults.standard
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupNavBar()
+        currencySort()
+    }
+    
+    func setupNavBar() {
+//        let searchBar = UISearchController(searchResultsController: nil)
+//        searchBar.searchResultsUpdater = self
+//        navigationItem.searchController = searchBar
+//        navigationItem.hidesSearchBarWhenScrolling = false
+    }
+    
+    func currencySort() {
         for (_, value) in currencyArray {
             let currKey = String(value.prefix(1))
             if var currValues = currencyDictionary[currKey] {
@@ -54,10 +46,12 @@ class CurrencyTypeTableViewController: UITableViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillAppear(animated)
         print("currentCurrency: \(currentCurrency)")
-        currentCurrency = currencyArray[index.integer(forKey: "index")].symbol
+        currentCurrency = currencyArray[settings.integer(forKey: "index")].symbol
         if self.isMovingToParent {
-            index.set(currentCurrency, forKey: "currSymbol")
+            settings.set(currentCurrency, forKey: "currSymbol")
+            #if DEBUG
             print("currentCurrency: \(currentCurrency)")
+            #endif
         }
     }
 }
@@ -80,7 +74,7 @@ extension CurrencyTypeTableViewController {
         return currencySectionTitles[section]
     }
     
-     override func sectionIndexTitles(for tableView: UITableView) -> [String]? {
+    override func sectionIndexTitles(for tableView: UITableView) -> [String]? {
         return currencySectionTitles
     }
     
@@ -92,15 +86,17 @@ extension CurrencyTypeTableViewController {
             cell.currSymbolLabel.text = currencyArray[indexPath.row].symbol
             cell.currNameLabel.text = currValues[indexPath.row]
         }
-        
-        let i = IndexPath(row: index.integer(forKey: "index"), section: 0)
         if flag {
             if indexPath == myIndexPath {
                 cell.accessoryType = .checkmark
+            } else {
+                cell.accessoryType = .none
             }
         } else {
-            if indexPath == i {
+            if indexPath == IndexPath(row: 0, section: 20) {
                 cell.accessoryType = .checkmark
+            } else {
+                cell.accessoryType = .none
             }
         }
         return cell
@@ -112,15 +108,30 @@ extension CurrencyTypeTableViewController {
             if cellPath == indexPath {
                 if let cell = tableView.cellForRow(at: indexPath) {
                     if cell.accessoryType == .checkmark {
-                        index.set(indexPath.row, forKey: "index")
+                        settings.set(indexPath.row, forKey: "index")
                         flag = true
                         myIndexPath = indexPath
+                        settings.set(indexPath.section, forKey: "section")
                     }
                 }
                 continue
             }
-            tableView.cellForRow(at: cellPath)!.accessoryType = .none
+            tableView.cellForRow(at: cellPath)?.accessoryType = .none
             tableView.deselectRow(at: indexPath, animated: true)
         }
     }
 }
+
+//extension CurrencyTypeTableViewController: UISearchResultsUpdating {
+//    func updateSearchResults(for searchController: UISearchController) {
+//        let currKey = currencySectionTitles[indexPath.section]
+//        if let searchText = searchController.searchBar.text {
+//            if let currValues = currencyDictionary[currKey] {
+//                searchResult = filteredCurrency.filter({$0.lowercased().contains(searchText)})
+//    //            searchFlag = true
+//            }
+//        }
+//        tableView.reloadData()
+//
+//    }
+//}

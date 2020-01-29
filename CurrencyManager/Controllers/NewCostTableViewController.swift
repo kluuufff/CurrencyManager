@@ -19,7 +19,10 @@ class NewCostTableViewController: UITableViewController {
     
     private let typePicker = UIPickerView()
     private let settings = UserDefaults.standard
-    private var amountTypeArray: [(icon: String, name: String)] = [("🚖", "Taxi"), ("🛍", "Shopping"), ("🍟", "Food"), ("👶", "Child"), ("👕", "Clothes"), ("👟", "Footwear"), ("💄", "Cosmetics"), ("🏠", "House"), ("🚗", "Car"), ("📱", "Smart device"), ("✅", "Other")]
+    private var amountTypeArray: [(icon: String, name: String)] = [
+        ("🚖", "Taxi"), ("🛍", "Shopping"), ("🍟", "Food"), ("👶", "Child"),
+        ("👕", "Clothes"), ("👟", "Footwear"), ("💄", "Cosmetics"),
+        ("🏠", "House"), ("🚗", "Car"), ("📱", "Smart device"), ("✅", "Other")]
     
     //MARK: - viewDidLoad
     
