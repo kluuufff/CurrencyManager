@@ -19,11 +19,11 @@ class CostsTableViewCell: UITableViewCell {
         didSet {
             //Added style for cells
             backView.layer.cornerRadius = 10
-            backView.layer.shadowOpacity = 0.3
+            backView.layer.shadowOpacity = 0.15
             backView.layer.shadowRadius = 8
             backView.layer.shadowColor = UIColor.gray.cgColor
             backView.layer.shadowOffset = CGSize.zero
-            backView.backgroundColor = .white
+//            backView.backgroundColor = .
         }
     }
 }

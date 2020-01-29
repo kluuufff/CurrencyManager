@@ -17,7 +17,7 @@ class StatisticTableViewController: UITableViewController {
     @IBOutlet weak var limitView: UIView! {
         didSet {
             limitView.layer.cornerRadius = 10
-            limitView.layer.shadowOpacity = 0.3
+            limitView.layer.shadowOpacity = 0.15
             limitView.layer.shadowRadius = 8
             limitView.layer.shadowColor = UIColor.gray.cgColor
             limitView.layer.shadowOffset = CGSize.zero
@@ -27,7 +27,7 @@ class StatisticTableViewController: UITableViewController {
     @IBOutlet weak var balanceView: UIView! {
         didSet {
             balanceView.layer.cornerRadius = 10
-            balanceView.layer.shadowOpacity = 0.3
+            balanceView.layer.shadowOpacity = 0.15
             balanceView.layer.shadowRadius = 8
             balanceView.layer.shadowColor = UIColor.gray.cgColor
             balanceView.layer.shadowOffset = CGSize.zero
