@@ -64,7 +64,9 @@ class NewCostTableViewController: UITableViewController {
         } else {
             print("countTextField is empty")
         }
-        settings.set(typeTextField.text, forKey: "amountType")
+        if typeTextField.text != "" {
+            settings.set(typeTextField.text, forKey: "amountType")
+        }
         if finalName != "" || value != "" {
             #if DEBUG
             print("date = \(dateResult)")

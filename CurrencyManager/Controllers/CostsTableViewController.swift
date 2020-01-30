@@ -19,17 +19,13 @@ class CostsTableViewController: UITableViewController {
         super.viewDidLoad()
         let coreData = CoreData()
         coreData.fetch()
-        let curr = settings.string(forKey: "currentTheme")
-        print("currTheme from CostsTableViewController: \(curr)")
-        if settings.string(forKey: "currentTheme") == "Dark" {
-            print("где дурк?")
-            self.view.window?.overrideUserInterfaceStyle = .dark
-        } else if settings.string(forKey: "currentTheme") == "Light" {
-            print("где лит?")
-            self.view.window?.overrideUserInterfaceStyle = .light
-        } else {
-            self.view.window?.overrideUserInterfaceStyle = .unspecified
-        }
+        tableView.register(UINib(nibName: "CostsTableViewCell", bundle: nil), forCellReuseIdentifier: "costsCell")
+        tableView.register(UINib(nibName: "CustomCostsTableViewCell", bundle: nil), forCellReuseIdentifier: "customCell")
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.reloadData()
     }
     
     //MARK: - Done button in NewCostTableViewController
@@ -47,24 +43,53 @@ class CostsTableViewController: UITableViewController {
 
 extension CostsTableViewController {
     
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
+    }
+    
     //return count cows in section
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return costs.count
+        if section == 1 {
+            return costs.count
+        } else {
+            return 1
+        }
     }
     
     //return cells
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "costsCell", for: indexPath) as! CostsTableViewCell
-        cell.dateLabel.text = costs[indexPath.row].value(forKey: "date") as? String
-        cell.amountLabel.text = costs[indexPath.row].value(forKey: "name") as? String
-        cell.costsTypeLabel.text = "-" + (settings.string(forKey: "currSymbol") ?? "$") + String((costs[indexPath.row].value(forKey: "value") as? String)!)
-        cell.accessoryView?.frame = CGRect(x: 5, y: 5, width: 5, height: 5)
-        return cell
+        let section = indexPath.section
+        
+        if section == 0 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "customCell") as! CustomCostsTableViewCell
+            cell.lastPaymentLabel.text = (settings.string(forKey: "currSymbol") ?? "$") + String((costs.last?.value(forKey: "value") as? String) ?? "0")
+//            var todayCosts = 0
+//            var weeklyCosts = 0
+//            todayCosts = settings.integer(forKey: "amount") - settings.integer(forKey: "sum")
+//            weeklyCosts = settings.integer(forKey: "amount") - settings.integer(forKey: "sum")
+            cell.typePaymentLabel.text = settings.string(forKey: "amountType")
+            cell.availableLabel.text = (settings.string(forKey: "currSymbol") ?? "$") + (settings.string(forKey: "balance") ?? settings.string(forKey: "amount") ?? "0")
+            cell.todayCostsLabel.text = (settings.string(forKey: "currSymbol") ?? "$") + (settings.string(forKey: "sum") ?? "0")
+            cell.weeklyCostsLabel.text = (settings.string(forKey: "currSymbol") ?? "$") + (settings.string(forKey: "sum") ?? "0")
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "costsCell") as! CostsTableViewCell
+            cell.dateLabel.text = costs[indexPath.row].value(forKey: "date") as? String
+            cell.amountLabel.text = costs[indexPath.row].value(forKey: "name") as? String
+            cell.costsTypeLabel.text = "-" + (settings.string(forKey: "currSymbol") ?? "$") + String((costs[indexPath.row].value(forKey: "value") as? String) ?? "0")
+            return cell
+        }
     }
     
     //return row height
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 120
+        let section = indexPath.section
+        if section == 0 {
+            return 192
+        } else if section == 1 {
+            return 120
+        }
+        return 0
     }
     
     // Override to support editing the table view.
