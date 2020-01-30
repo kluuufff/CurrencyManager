@@ -24,6 +24,15 @@ class ThemesSettingsTableViewController: UITableViewController {
         currentTheme = themesArray[themeSelect.integer(forKey: "themeSelect")]
         if self.isMovingToParent {
             themeSelect.set(currentTheme, forKey: "currentTheme")
+            let curr = themeSelect.string(forKey: "currentTheme")
+            print("currTheme: \(curr)")
+//            if themeSelect.string(forKey: "currentTheme") == "Dark" {
+//                self.view.window?.overrideUserInterfaceStyle = .dark
+//            } else if themeSelect.string(forKey: "currentTheme") == "Light" {
+//                self.view.window?.overrideUserInterfaceStyle = .light
+//            } else {
+//                self.view.window?.overrideUserInterfaceStyle = .unspecified
+//            }
         }
     }
 
@@ -44,10 +53,14 @@ class ThemesSettingsTableViewController: UITableViewController {
         if flag2 {
             if indexPath == myIndexPath2 {
                 cell.accessoryType = .checkmark
+            } else {
+                cell.accessoryType = .none
             }
         } else {
             if indexPath == i {
                 cell.accessoryType = .checkmark
+            } else {
+                cell.accessoryType = .none
             }
         }
         return cell
@@ -59,9 +72,34 @@ class ThemesSettingsTableViewController: UITableViewController {
             if cellPath == indexPath {
                 if let cell = tableView.cellForRow(at: indexPath) {
                     if cell.accessoryType == .checkmark {
-                        themeSelect.set(indexPath.row, forKey: "currentTheme")
+                        themeSelect.set(indexPath.row, forKey: "themeSelect")
                         flag2 = true
                         myIndexPath2 = indexPath
+                        currentTheme = themesArray[self.themeSelect.integer(forKey: "themeSelect")]
+                        print("currentTheme \(currentTheme)")
+//                        if themeSelect.string(forKey: "currentTheme") == "Dark" {
+//                            self.view.window?.overrideUserInterfaceStyle = .dark
+//                        } else if themeSelect.string(forKey: "currentTheme") == "Light" {
+//                            self.view.window?.overrideUserInterfaceStyle = .light
+//                        } else {
+//                            self.view.window?.overrideUserInterfaceStyle = .unspecified
+//                        }
+                            if self.themesArray[self.themeSelect.integer(forKey: "themeSelect")] == "Dark" {
+//                                UIView.animate(withDuration: 2) {
+//                                    self.view.window?.overrideUserInterfaceStyle = .dark
+//                                }
+                                self.view.window?.overrideUserInterfaceStyle = .dark
+                            } else if self.themesArray[self.themeSelect.integer(forKey: "themeSelect")] == "Light" {
+//                                UIView.animate(withDuration: 2) {
+//                                    self.view.window?.overrideUserInterfaceStyle = .light
+//                                }
+                                self.view.window?.overrideUserInterfaceStyle = .light
+                            } else {
+//                                UIView.animate(withDuration: 2) {
+//                                    self.view.window?.overrideUserInterfaceStyle = .unspecified
+//                                }
+                                self.view.window?.overrideUserInterfaceStyle = .unspecified
+                            }
                     }
                 }
                 continue
@@ -69,5 +107,6 @@ class ThemesSettingsTableViewController: UITableViewController {
             tableView.cellForRow(at: cellPath)!.accessoryType = .none
             tableView.deselectRow(at: indexPath, animated: true)
         }
+
     }
 }

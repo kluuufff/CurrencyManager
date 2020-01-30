@@ -13,15 +13,26 @@ class CostsTableViewController: UITableViewController {
     
     private let settings = UserDefaults.standard
     
-//MARK: - viewDidLoad
+    //MARK: - viewDidLoad
     
     override func viewDidLoad() {
         super.viewDidLoad()
         let coreData = CoreData()
         coreData.fetch()
+        let curr = settings.string(forKey: "currentTheme")
+        print("currTheme from CostsTableViewController: \(curr)")
+        if settings.string(forKey: "currentTheme") == "Dark" {
+            print("где дурк?")
+            self.view.window?.overrideUserInterfaceStyle = .dark
+        } else if settings.string(forKey: "currentTheme") == "Light" {
+            print("где лит?")
+            self.view.window?.overrideUserInterfaceStyle = .light
+        } else {
+            self.view.window?.overrideUserInterfaceStyle = .unspecified
+        }
     }
     
-//MARK: - Done button in NewCostTableViewController
+    //MARK: - Done button in NewCostTableViewController
     
     @IBAction func unwindToCostsTableViewController(segue: UIStoryboardSegue) {
         DispatchQueue.global(qos: .userInitiated).async {
