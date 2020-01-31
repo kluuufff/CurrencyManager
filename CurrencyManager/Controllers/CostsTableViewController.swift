@@ -63,10 +63,6 @@ extension CostsTableViewController {
         if section == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "customCell") as! CustomCostsTableViewCell
             cell.lastPaymentLabel.text = (settings.string(forKey: "currSymbol") ?? "$") + String((costs.last?.value(forKey: "value") as? String) ?? "0")
-//            var todayCosts = 0
-//            var weeklyCosts = 0
-//            todayCosts = settings.integer(forKey: "amount") - settings.integer(forKey: "sum")
-//            weeklyCosts = settings.integer(forKey: "amount") - settings.integer(forKey: "sum")
             cell.typePaymentLabel.text = settings.string(forKey: "amountType")
             cell.availableLabel.text = (settings.string(forKey: "currSymbol") ?? "$") + (settings.string(forKey: "balance") ?? settings.string(forKey: "amount") ?? "0")
             cell.todayCostsLabel.text = (settings.string(forKey: "currSymbol") ?? "$") + (settings.string(forKey: "sum") ?? "0")
@@ -85,24 +81,34 @@ extension CostsTableViewController {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let section = indexPath.section
         if section == 0 {
-            return 192
+            return 184
         } else if section == 1 {
-            return 120
+            return 76
         }
+        return 0
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 0
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 0
     }
     
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            let coreData = CoreData()
-            let oldBalance = settings.integer(forKey: "balance")
-            let sum = settings.integer(forKey: "sum")
-            let returnAmount = costs[indexPath.row].value(forKey: "value") as? String
-            coreData.delete(object: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .fade)
-            settings.set(oldBalance + Int(returnAmount!)!, forKey: "balance")
-            settings.set(sum - Int(returnAmount!)!, forKey: "sum")
+        if indexPath.section == 1 {
+            if editingStyle == .delete {
+                let coreData = CoreData()
+                let oldBalance = settings.integer(forKey: "balance")
+                let sum = settings.integer(forKey: "sum")
+                let returnAmount = costs[indexPath.row].value(forKey: "value") as? String
+                coreData.delete(object: indexPath.row)
+                tableView.deleteRows(at: [indexPath], with: .fade)
+                settings.set(oldBalance + Int(returnAmount!)!, forKey: "balance")
+                settings.set(sum - Int(returnAmount!)!, forKey: "sum")
+            }
         }
     }
 }

@@ -152,7 +152,6 @@
 		2534F76F23D7639D003B0643 /* CurrencyManager */ = {
 			isa = PBXGroup;
 			children = (
-				177D30D923E33A3600756EE7 /* CurrencyManager.entitlements */,
 				2534F7D023DB0A7D003B0643 /* Controllers */,
 				1715983023DC6DB800E832C5 /* View */,
 				2534F7D123DB0A8A003B0643 /* Data */,
@@ -188,6 +187,7 @@
 				2534F77623D7639D003B0643 /* Main.storyboard */,
 				2534F77C23D763A0003B0643 /* Assets.xcassets */,
 				2534F77E23D763A0003B0643 /* LaunchScreen.storyboard */,
+				177D30D923E33A3600756EE7 /* CurrencyManager.entitlements */,
 				2534F77923D7639D003B0643 /* CurrencyManager.xcdatamodeld */,
 			);
 			path = "Supported Files";
