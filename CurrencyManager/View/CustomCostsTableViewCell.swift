@@ -14,7 +14,7 @@ class CustomCostsTableViewCell: UITableViewCell {
         didSet {
             view1.layer.cornerRadius = 10
             view1.layer.shadowOpacity = 0.15
-            view1.layer.shadowRadius = 8
+            view1.layer.shadowRadius = 7
             view1.layer.shadowColor = UIColor.gray.cgColor
             view1.layer.shadowOffset = CGSize.zero
         }
@@ -26,7 +26,7 @@ class CustomCostsTableViewCell: UITableViewCell {
         didSet {
             view2.layer.cornerRadius = 10
             view2.layer.shadowOpacity = 0.15
-            view2.layer.shadowRadius = 8
+            view2.layer.shadowRadius = 7
             view2.layer.shadowColor = UIColor.gray.cgColor
             view2.layer.shadowOffset = CGSize.zero
         }

@@ -73,9 +73,10 @@ class NewCostTableViewController: UITableViewController {
             #endif
             coreData.save(date: dateResult, name: finalName, value: value)
             coreData.fetch()
-            performSegue(withIdentifier: "unwindToCostsTableViewController", sender: self)
+            performSegue(withIdentifier: "unwindToCostsViewController", sender: self)
+            print("return")
         } else {
-            performSegue(withIdentifier: "unwindToCostsTableViewController", sender: self)
+            performSegue(withIdentifier: "unwindToCostsViewController", sender: self)
         }
     }
 }
