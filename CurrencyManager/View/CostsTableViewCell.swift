@@ -15,7 +15,7 @@ class CostsTableViewCell: UITableViewCell {
     @IBOutlet weak var costsTypeLabel: UILabel!
     @IBOutlet weak var backView: UIView! {
         didSet {
-            backView.layer.cornerRadius = 10
+            backView.layer.cornerRadius = 12
             backView.layer.shadowOpacity = 0.15
             backView.layer.shadowRadius = 3.9
             backView.layer.shadowColor = UIColor.gray.cgColor

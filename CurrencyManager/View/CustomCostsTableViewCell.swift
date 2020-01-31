@@ -12,7 +12,7 @@ class CustomCostsTableViewCell: UITableViewCell {
     
     @IBOutlet weak var view1: UIView! {
         didSet {
-            view1.layer.cornerRadius = 10
+            view1.layer.cornerRadius = 8
             view1.layer.shadowOpacity = 0.15
             view1.layer.shadowRadius = 7
             view1.layer.shadowColor = UIColor.gray.cgColor
@@ -24,7 +24,7 @@ class CustomCostsTableViewCell: UITableViewCell {
     @IBOutlet weak var availableLabel: UILabel!
     @IBOutlet weak var view2: UIView! {
         didSet {
-            view2.layer.cornerRadius = 10
+            view2.layer.cornerRadius = 8
             view2.layer.shadowOpacity = 0.15
             view2.layer.shadowRadius = 7
             view2.layer.shadowColor = UIColor.gray.cgColor

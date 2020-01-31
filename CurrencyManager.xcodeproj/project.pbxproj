@@ -56,9 +56,9 @@
 		1715983523DEF2FC00E832C5 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		177D30D123E3086400756EE7 /* CustomCostsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCostsTableViewCell.swift; sourceTree = "<group>"; };
 		177D30D523E3128000756EE7 /* CostsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CostsTableViewCell.swift; sourceTree = "<group>"; };
-		177D30D923E33A3600756EE7 /* CurrencyManager.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CurrencyManager.entitlements; sourceTree = "<group>"; };
 		177D30DB23E33A3600756EE7 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		177D30DD23E44A2F00756EE7 /* CostsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CostsViewController.swift; sourceTree = "<group>"; };
+		177D30DF23E46F2000756EE7 /* CurrencyManager.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = CurrencyManager.entitlements; sourceTree = "<group>"; };
 		2534F76D23D7639D003B0643 /* CurrencyManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CurrencyManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2534F77023D7639D003B0643 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2534F77223D7639D003B0643 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -151,6 +151,7 @@
 				2534F7D123DB0A8A003B0643 /* Data */,
 				2534F7CF23DB0A65003B0643 /* Supported Files */,
 				2534F78123D763A0003B0643 /* Info.plist */,
+				177D30DF23E46F2000756EE7 /* CurrencyManager.entitlements */,
 			);
 			path = CurrencyManager;
 			sourceTree = "<group>";
@@ -181,7 +182,6 @@
 				2534F77623D7639D003B0643 /* Main.storyboard */,
 				2534F77C23D763A0003B0643 /* Assets.xcassets */,
 				2534F77E23D763A0003B0643 /* LaunchScreen.storyboard */,
-				177D30D923E33A3600756EE7 /* CurrencyManager.entitlements */,
 				2534F77923D7639D003B0643 /* CurrencyManager.xcdatamodeld */,
 			);
 			path = "Supported Files";
@@ -529,6 +529,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = CurrencyManager/CurrencyManager.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9SR6C9RNX9;
 				INFOPLIST_FILE = CurrencyManager/Info.plist;
@@ -539,6 +540,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.iHope.CurrencyManager;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -549,6 +551,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = CurrencyManager/CurrencyManager.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9SR6C9RNX9;
 				INFOPLIST_FILE = CurrencyManager/Info.plist;
@@ -559,6 +562,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.iHope.CurrencyManager;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
