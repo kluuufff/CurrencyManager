@@ -44,7 +44,7 @@ class NewCostTableViewController: UITableViewController {
         let coreData = CoreData()
         let date = Date()
         let formatter = DateFormatter()
-        formatter.dateFormat = "EEEE, HH:mm"
+        formatter.dateFormat = "EEEE, HH:mm:ss"
         let dateResult = formatter.string(from: date)
         var value = ""
         var finalName = ""
@@ -56,11 +56,11 @@ class NewCostTableViewController: UITableViewController {
         }
         if let count = countTextField.text {
             value = count
-            let oldBalance = settings.integer(forKey: "amount")
-            settings.set(Int(count)! + settings.integer(forKey: "sum"), forKey: "sum")
-            let fullSum = settings.integer(forKey: "sum")
+            let oldBalance = settings.double(forKey: "amount")
+            settings.set(Double(count)! + settings.double(forKey: "sum"), forKey: "sum")
+            let fullSum = settings.double(forKey: "sum")
             settings.set(oldBalance - fullSum, forKey: "balance")
-            print("balance = \(settings.integer(forKey: "balance"))")
+            print("balance = \(settings.double(forKey: "balance"))")
         } else {
             print("countTextField is empty")
         }

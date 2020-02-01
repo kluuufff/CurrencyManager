@@ -45,6 +45,8 @@ class CoreData {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         let context = appDelegate.persistentContainer.viewContext
         let fetch = NSFetchRequest<NSManagedObject>(entityName: "Costs")
+        let sort = NSSortDescriptor(key: "date", ascending: false)
+        fetch.sortDescriptors = [sort]
         do {
             costs = try context.fetch(fetch)
         } catch {

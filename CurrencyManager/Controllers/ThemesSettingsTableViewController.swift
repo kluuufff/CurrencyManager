@@ -24,8 +24,8 @@ class ThemesSettingsTableViewController: UITableViewController {
         currentTheme = themesArray[themeSelect.integer(forKey: "themeSelect")]
         if self.isMovingToParent {
             themeSelect.set(currentTheme, forKey: "currentTheme")
-            let curr = themeSelect.string(forKey: "currentTheme")
-            print("currTheme: \(curr)")
+//            let curr = themeSelect.string(forKey: "currentTheme")
+//            print("currTheme: \(curr)")
 //            if themeSelect.string(forKey: "currentTheme") == "Dark" {
 //                self.view.window?.overrideUserInterfaceStyle = .dark
 //            } else if themeSelect.string(forKey: "currentTheme") == "Light" {

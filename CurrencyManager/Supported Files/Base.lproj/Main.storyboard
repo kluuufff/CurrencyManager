@@ -806,6 +806,9 @@
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Available" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X4t-Ym-xp5">
                                                             <rect key="frame" x="82" y="8" width="51" height="15"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="51" id="ipm-Ia-eXa"/>
+                                                            </constraints>
                                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                             <color key="textColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -870,25 +873,22 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vvd-Oc-k1h">
                                                     <rect key="frame" x="12" y="8" width="296" height="60"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Breakfest" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8FX-6l-Epq">
-                                                            <rect key="frame" x="12" y="21" width="125" height="29"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="width" constant="125" id="iHO-Ef-ECu"/>
-                                                            </constraints>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Breakfest" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="8FX-6l-Epq">
+                                                            <rect key="frame" x="12" y="21" width="179" height="29"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Today, 11:44 AM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jEZ-cz-o8H">
-                                                            <rect key="frame" x="12" y="10" width="81" height="12"/>
-                                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="10"/>
+                                                            <rect key="frame" x="12" y="10" width="87.5" height="13.5"/>
+                                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="11"/>
                                                             <color key="textColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-$49" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="21" translatesAutoresizingMaskIntoConstraints="NO" id="Mav-pe-NU7">
-                                                            <rect key="frame" x="159" y="18.5" width="125" height="31.5"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-$49" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="Mav-pe-NU7">
+                                                            <rect key="frame" x="199" y="18.5" width="85" height="31.5"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="125" id="gcd-Qc-jzN"/>
+                                                                <constraint firstAttribute="width" constant="85" id="gcd-Qc-jzN"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="26"/>
                                                             <nil key="textColor"/>
@@ -898,6 +898,7 @@
                                                     <color key="backgroundColor" systemColor="secondarySystemGroupedBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstAttribute="trailing" secondItem="Mav-pe-NU7" secondAttribute="trailing" constant="12" id="Gdr-vB-C1J"/>
+                                                        <constraint firstItem="Mav-pe-NU7" firstAttribute="leading" secondItem="8FX-6l-Epq" secondAttribute="trailing" constant="8" id="HOY-yY-rPv"/>
                                                         <constraint firstItem="jEZ-cz-o8H" firstAttribute="leading" secondItem="Vvd-Oc-k1h" secondAttribute="leading" constant="12" id="Qws-Iu-JXk"/>
                                                         <constraint firstItem="jEZ-cz-o8H" firstAttribute="top" secondItem="Vvd-Oc-k1h" secondAttribute="top" constant="10" id="Tiy-Vd-PFF"/>
                                                         <constraint firstAttribute="bottom" secondItem="8FX-6l-Epq" secondAttribute="bottom" constant="10" id="aR7-2S-jfh"/>

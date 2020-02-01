@@ -53,8 +53,21 @@ class CostsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
         return 0
     }
+    
+    func getFormatDate(str: String) -> String {
+        
+        let formatter = DateFormatter()
+        formatter.dateFormat = "EEEE, HH:mm"
+        let temp = formatter.date(from: str)!
+        let result = formatter.string(from: temp)
+
+        return result
+    }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let formatter = DateFormatter()
+        formatter.dateFormat = "EEEE, HH:mm"
         
         if tableView == tableViewStatistic {
             let cell = tableView.dequeueReusableCell(withIdentifier: "customCell", for: indexPath) as! CustomCostsTableViewCell
@@ -67,6 +80,8 @@ class CostsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
         if tableView == tableViewData {
             let cell = tableView.dequeueReusableCell(withIdentifier: "costsCell", for: indexPath) as! CostsTableViewCell
+//            print(costs[indexPath.row].value(forKey: "date") as? String)
+//            cell.dateLabel.text = getFormatDate(str: (costs[indexPath.row].value(forKey: "date") as? String)!)
             cell.dateLabel.text = costs[indexPath.row].value(forKey: "date") as? String
             cell.amountLabel.text = costs[indexPath.row].value(forKey: "name") as? String
             cell.costsTypeLabel.text = "-" + (settings.string(forKey: "currSymbol") ?? "$") + String((costs[indexPath.row].value(forKey: "value") as? String) ?? "0")

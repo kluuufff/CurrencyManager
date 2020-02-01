@@ -12,20 +12,20 @@ class AmountSettingsTableViewController: UITableViewController {
 
     @IBOutlet weak var amountTextField: UITextField!
     private let settings = UserDefaults.standard
-    private var amount: Int!
-    private var amountOld = 0
-    private var balanceOld = 0
+    private var amount: Double!
+    private var amountOld = 0.0
+    private var balanceOld = 0.0
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        amount = settings.integer(forKey: "amount")
+        amount = settings.double(forKey: "amount")
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         amountTextField.becomeFirstResponder()
-        amountOld = settings.integer(forKey: "amount")
-        balanceOld = settings.integer(forKey: "balance")
+        amountOld = settings.double(forKey: "amount")
+        balanceOld = settings.double(forKey: "balance")
         print("amountOld \(amountOld)")
         print("balanceOld \(balanceOld)")
     }
@@ -44,9 +44,9 @@ class AmountSettingsTableViewController: UITableViewController {
                 settings.set(amountTextField.text, forKey: "amount")
             }
             if let textFieldAmount = amountTextField.text {
-                guard let intAmount = Int(textFieldAmount) else { return }
+                guard let intAmount = Double(textFieldAmount) else { return }
                 if amountOld != 0 {
-                    settings.set(intAmount - settings.integer(forKey: "sum"), forKey: "balance")
+                    settings.set(intAmount - settings.double(forKey: "sum"), forKey: "balance")
                 }
             }
         }
