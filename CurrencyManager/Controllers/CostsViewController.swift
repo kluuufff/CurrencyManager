@@ -77,7 +77,7 @@ class CostsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if tableView == tableViewStatistic {
-            return 184
+            return 172
         }
         if tableView == tableViewData {
             return 76

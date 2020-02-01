@@ -33,7 +33,16 @@ class CustomCostsTableViewCell: UITableViewCell {
     }
     @IBOutlet weak var todayCostsLabel: UILabel!
     @IBOutlet weak var weeklyCostsLabel: UILabel!
-
+    @IBOutlet weak var view3: UIView! {
+        didSet {
+            view3.layer.cornerRadius = 8
+            view3.layer.shadowOpacity = 0.15
+            view3.layer.shadowRadius = 7
+            view3.layer.shadowColor = UIColor.gray.cgColor
+            view3.layer.shadowOffset = CGSize.zero
+        }
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
