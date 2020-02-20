@@ -41,42 +41,55 @@ class NewCostTableViewController: UITableViewController {
     //MARK: - doneBarButtonAction
     
     @IBAction func doneBarButtonAction(_ sender: UIBarButtonItem) {
-        let coreData = CoreData()
-        let date = Date()
-        let formatter = DateFormatter()
-        formatter.dateFormat = "EEEE, HH:mm:ss"
-        let dateResult = formatter.string(from: date)
-        var value = ""
-        var finalName = ""
-        
-        if let name = nameTextField.text {
-            finalName = name
+        if nameTextField.text == "" || countTextField.text == "" {
+            if nameTextField.text == "" && countTextField.text == "" {
+                performSegue(withIdentifier: "unwindToCostsViewController", sender: self)
+            } else if nameTextField.text == "" {
+                let alert = UIAlertController(title: "Title is empty", message: "Enter title", preferredStyle: .alert)
+                let done = UIAlertAction(title: "Ok", style: .default, handler: nil)
+                alert.addAction(done)
+                present(alert, animated: true, completion: nil)
+            } else {
+                let alert = UIAlertController(title: "Count is empty", message: "Enter count", preferredStyle: .alert)
+                let done = UIAlertAction(title: "Ok", style: .default, handler: nil)
+                alert.addAction(done)
+                present(alert, animated: true, completion: nil)
+            }
         } else {
-            print("nameTextField is empty")
-        }
-        if let count = countTextField.text {
-            value = count
-            let oldBalance = settings.double(forKey: "amount")
-            settings.set(Double(count)! + settings.double(forKey: "sum"), forKey: "sum")
-            let fullSum = settings.double(forKey: "sum")
-            settings.set(oldBalance - fullSum, forKey: "balance")
-            print("balance = \(settings.double(forKey: "balance"))")
-        } else {
-            print("countTextField is empty")
-        }
-        if typeTextField.text != "" {
-            settings.set(typeTextField.text, forKey: "amountType")
-        }
-        if finalName != "" || value != "" {
-            #if DEBUG
-            print("date = \(dateResult)")
-            #endif
-            coreData.save(date: dateResult, name: finalName, value: value)
-            coreData.fetch()
-            performSegue(withIdentifier: "unwindToCostsViewController", sender: self)
-            print("return")
-        } else {
-            performSegue(withIdentifier: "unwindToCostsViewController", sender: self)
+            let coreData = CoreData()
+            let date = Date()
+            let formatter = DateFormatter()
+            formatter.dateFormat = "EEEE, HH:mm:ss"
+            let dateResult = formatter.string(from: date)
+            var value = ""
+            var finalName = ""
+            if let name = nameTextField.text {
+                finalName = name
+            } else {
+                print("nameTextField is empty")
+            }
+            if let count = countTextField.text {
+                value = count
+                let oldBalance = settings.double(forKey: "amount")
+                settings.set(Double(count)! + settings.double(forKey: "sum"), forKey: "sum")
+                let fullSum = settings.double(forKey: "sum")
+                settings.set(oldBalance - fullSum, forKey: "balance")
+                print("balance = \(settings.double(forKey: "balance"))")
+            } else {
+                print("countTextField is empty")
+            }
+            if typeTextField.text != "" {
+                settings.set(typeTextField.text, forKey: "amountType")
+            }
+            if finalName != "" || value != "" {
+                #if DEBUG
+                print("date = \(dateResult)")
+                #endif
+                coreData.save(date: dateResult, name: finalName, value: value)
+                coreData.fetch()
+                performSegue(withIdentifier: "unwindToCostsViewController", sender: self)
+                print("return")
+            }
         }
     }
 }
