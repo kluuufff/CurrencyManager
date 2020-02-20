@@ -78,18 +78,14 @@ class NewCostTableViewController: UITableViewController {
             } else {
                 print("countTextField is empty")
             }
-            if typeTextField.text != "" {
-                settings.set(typeTextField.text, forKey: "amountType")
+            if typeTextField.text == "" {
+                typeTextField.text = amountTypeArray.last?.name
             }
-            if finalName != "" || value != "" {
-                #if DEBUG
-                print("date = \(dateResult)")
-                #endif
-                coreData.save(date: dateResult, name: finalName, value: value)
-                coreData.fetch()
-                performSegue(withIdentifier: "unwindToCostsViewController", sender: self)
-                print("return")
-            }
+            settings.set(typeTextField.text, forKey: "amountType")
+            coreData.save(date: dateResult, name: finalName, value: value)
+            coreData.fetch()
+            performSegue(withIdentifier: "unwindToCostsViewController", sender: self)
+            print("return")
         }
     }
 }
